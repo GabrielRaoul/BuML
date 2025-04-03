@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 import rasterio as rio
+import os
 
 def linear_dataset_plot(X,y):
     plt.figure(figsize=(15, 5))
