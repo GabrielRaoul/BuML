@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+import rasterio as rio
 
 def linear_dataset_plot(X,y):
     plt.figure(figsize=(15, 5))
@@ -98,3 +99,19 @@ def plot_whole_data_with_prediction(X, y, X_test, y_pred, title=None):
     plt.grid(True)
     plt.legend()
     plt.show()
+    
+def plot_sat(filepath, cmap='viridis'):
+  s2 = rio.open(filepath)
+  data = s2.read()
+  if data.shape[0] > 3:
+    plt.figure(figsize=(2*data.shape[0],3))
+  else:
+    plt.figure(figsize=(6,4))
+  plt.suptitle(f"Bands of '{os.path.basename(filepath)}'\n{data.shape=}")
+  last = None
+  for i in range(data.shape[0]):
+    plt.subplot(1, data.shape[0]+1, i+1)
+    plt.title(f"Band {i+1}")
+    plt.imshow(data[i,:,:], cmap=cmap)
+    plt.axis('off')
+  plt.show()
