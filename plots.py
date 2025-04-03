@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+# Get cut-down GDAL that rasterio uses
+from osgeo import gdal
+# ... and suppress errors
+gdal.PushErrorHandler('CPLQuietErrorHandler')
 import rasterio as rio
 import os
 
