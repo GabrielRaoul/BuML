@@ -75,16 +75,16 @@ def plot_error(y_test, y_pred, title=None):
     mi = min(min(y_test),min(y_pred))
     ma = max(max(y_test),max(y_pred))
     plt.plot([mi,ma],[mi,ma], color='grey', alpha=.4)
-    plt.plot(y_test, y_pred, linestyle=':', color='k', marker='o', mec='#1a7a7d', mfc = '#29bdc1')
+    plt.scatter(y_test, y_pred, color='#1a7a7d')
     mae = np.mean(np.abs(y_test - y_pred))
     rmse = np.sqrt(np.mean((y_test - y_pred)**2))
     plt.text(0.05, 0.95, f'MAE:   {mae:.4f}\nRMSE: {rmse:.4f}',
-            horizontalalignment='left',verticalalignment='top', 
+            horizontalalignment='left',verticalalignment='top',
             transform=plt.gca().transAxes, fontsize=12,
             bbox=dict(facecolor='#29bdc1', alpha=1))
     plt.xlim([mi, ma])
     plt.ylim([mi, ma])
-   
+
     plt.xlabel(r'$y_{test}$',fontsize=14)
     plt.ylabel(r'$y_{pred}$',fontsize=14)
     plt.title(title)
